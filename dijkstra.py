@@ -43,9 +43,12 @@ class Dijkstra:
                 distance = node.distance
                 self.currentNode = node
 
+        
+
+        self.openNodes.remove(self.currentNode)
         self.currentNode.status = "closed"
         self.currentNode.isCurrentNode = True
-        self.openNodes.remove(self.currentNode)
+        
 
         neighbors = self.graph.getNeighbors(self.currentNode)
 
@@ -53,7 +56,9 @@ class Dijkstra:
             edge = self.graph.getEdge(self.currentNode, node)
             distance = self.currentNode.distance + edge.weight
             if node.distance == -1 or node.distance > distance:
-                node.shorterRoute = True
+                if node.distance != -1:
+                    print(" peokeijk")
+                    node.shorterRoute = True
                 node.distance = distance
 
             if node.status == "closed":
@@ -63,8 +68,9 @@ class Dijkstra:
             #     continue
 
             node.status = "open"
-            
-            self.openNodes.append(node)
+
+            if node not in self.openNodes:            
+                self.openNodes.append(node)
 
         # neighbors = []
 

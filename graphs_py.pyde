@@ -49,6 +49,7 @@ def setup():
 
                     if destination in graph.getNeighbors(source):
                         continue
+                    
 
                     if destination in attemptedDestinations:
                         continue
@@ -75,7 +76,6 @@ def setup():
 def mousePressed():
     global dijkstra
     global stepCount
-    print("Step: " + str(stepCount))
     dijkstra.step()
     stepCount += 1
     

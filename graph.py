@@ -35,8 +35,8 @@ class Graph:
                 continue
             if edge.target == source and edge.source == target:
                 continue
-            if intersect(edge.source, edge.target, source, target):
-                return False
+            # if intersect(edge.source, edge.target, source, target):
+            #     return False
 
         self.edges.append(Edge(source, target, weight))
         return True
@@ -88,7 +88,10 @@ class Node:
         elif self.status == "closed":
             fill(243,119,53)
         elif self.status == "open":
-            fill(255,196,37)
+            if self.shorterRoute:
+                fill(0,174,219)
+            else:
+                fill(255,196,37)
         else:
             fill(200)
     	
@@ -113,10 +116,7 @@ class Node:
              noFill()
              ellipse(self.x, self.y, 32, 32)
 
-        if self.status == "closed" and self.shorterRoute == True:
-             stroke	(0,174,219)
-             noFill()
-             ellipse(self.x, self.y, 32, 32)
+        
 
 class Edge:
     
